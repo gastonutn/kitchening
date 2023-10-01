@@ -1,5 +1,6 @@
 const { check, body } = require("express-validator");
 const { readJSON } = require("../data");
+const db = require('../database/models')
 module.exports = [
   check("name")
     .isLength({
@@ -21,6 +22,7 @@ module.exports = [
     .isEmail()
     .withMessage("Formato inválido")
     .custom((value, { req }) => {
+      return db.user.findOne
       const users = readJSON("users.json");
       const user = users.find((user) => user.email === value);
 
