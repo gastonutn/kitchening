@@ -1,5 +1,5 @@
 const { validationResult } = require("express-validator")
-const { readJSON } = require("../../data")
+
 const db = require('../../database/models')
 module.exports = (req,res) => {
 
@@ -14,21 +14,23 @@ module.exports = (req,res) => {
             }
         }). then(user => {
             req.session.userLogin = {
-                id: isSecureContext.id,
+                id: user.id,
                 name: user.name,
                 role: user.roleId
             }
-            req.body.remember !== undefined && res.cookie('kitcheningUser4EVER',req.session.userLogin,{
+            req.body.remember !== undefined
+             && res.cookie('kitcheningUser4EVER',req.session.userLogin,{
                 maxAge : 1000 * 60 * 5
             })
             return res.redirect('/')
 
-        }).cacth((error)=> console.log(error))
+        }).catch((error)=> console.log(error))
     
-  
-        return res.redirect('/')
     }else {
-        return res.send(errors.mapped())
+        return res.render('login',
+         {
+             errors: errors.mapped()
+         })
 }}
 
   

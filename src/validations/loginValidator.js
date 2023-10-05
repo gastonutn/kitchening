@@ -10,14 +10,14 @@ module.exports = [
     .withMessage("Formato inválido"),
     body("password")
     .custom((value, {req}) => {
-        return db.User.findOne({
+        return db.user.findOne({
             where : {
                 email : req.body.email
             }
         }).then(user => {
             if(!user || !compareSync(value, user.password)){
                 return Promise.reject()
-            }
+            } 
         }).catch(() => Promise.reject('Credenciales inválidas'))
     })
 ];

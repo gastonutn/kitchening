@@ -10,7 +10,7 @@
                 <div class="col-12 col-md-8 mx-auto mt-5">
                     <div class="card shadow">
                         <div class="card-header">
-                            <h4 class="card-title">Editar producto</h4>
+                            <h4 class="card-title">Editar producto: <%= title %></h4>
                         </div>
                         <div class="card-body">
                             <form
@@ -33,11 +33,11 @@
                                         aria-label="Default select example"
                                         name="category"
                                         id="category">
-                                        <% categories.forEach(item=> { %>
-                                        <option <%=item.name===category &&
-                                            'selected' %> value="<%= item.name
+                                        <% categories.forEach(category=> { %>
+                                        <option <%=category.id===categoryId &&
+                                            'selected' %> value="<%= category.id
                                             %>
-                                            "><%= item.name %>
+                                            "><%= category.name %>
                                         </option>
                                         <% }) %>
                                     </select>
@@ -64,11 +64,9 @@
                                         aria-label="Default select example"
                                         name="section"
                                         id="section">
-                                        <% sections.forEach(item=> { %>
-                                        <option value="<%= item %>" <%=section===item
-                                            && 'selected' %>><%=
-                                            item==='free' ? 'Gratis' : item==='sale'
-                                            ? 'Oferta' : 'Nuevo' %>
+                                        <% sections.forEach(section=> { %>
+                                        <option value="<%= section.id %>" <%=sectionId===section.id
+                                            && 'selected' %>><%= section.name %>
                                         </option>
                                         <% }) %>
                                     </select>
@@ -82,19 +80,22 @@
                                             <%= locals.errors && (errors.description && errors.description.msg) %>
                                           </small>
                                 </div>
-                                <div class="col-12 col-md-6">
-                                    <img
-                                        src="/img/<%= image || 'img-pdto-1.jpg' %>"
+                                <div class="col-12 mb-3">
+                                    <div class="d-flex justify-content-between">
+                                    <% images.forEach(image => { %>
+                                        <img src="/img/products/<%= image.file  %>" width="25%"
                                         alt>
+                                    <% }) %>
+                                </div>
                                 </div>
                                 <div
                                     class="col-12 d-flex justify-content-end gap-2 mb-3">
-                                    <label for="image" class="btn btn-secondary">Imagen
+                                    <label for="image" class="btn btn-secondary">cambiar Imagen
                                         principal</label>
                                     <input type="file" name="image" id="image"
                                         hidden />
                                     <label for="images"
-                                        class="btn btn-secondary">Imágenes</label>
+                                        class="btn btn-secondary">cambiar Imágenes</label>
                                     <input type="file" multiple name="images"
                                         id="images" hidden />
                                     <button class="btn btn-dark">Guardar cambios</button>

@@ -1,26 +1,25 @@
 'use strict';
-const seccionesArray = ['entradas','principales','desayunos','bebidas','postres'];
-const seccionesDB = seccionesArray.map(categoria => {
+const seccionesArray = ['entradas','platos principales','cafeteria','ensaladas','bebidas','postres','vinos'];
+const seccionesDB = seccionesArray.map(seccion => {
   return {
     name: seccion,
-    createdAdd: new Date,
-    createdAdd: new Date,
+    createdAt: new Date,
+    updatedAt: new Date,
   }
 })
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
   async up(queryInterface, Sequelize) {
 
-    await queryInterface.bulkInsert('categories', [{
-      categoriasDB
-    }
-  ], {});
+    await queryInterface.bulkInsert('sections', 
+    seccionesDB,
+       {});
 
   },
 
   async down(queryInterface, Sequelize) {
 
-    await queryInterface.bulkDelete('users', null, {});
+    await queryInterface.bulkDelete('sections', null, {});
 
   }
 };

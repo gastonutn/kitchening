@@ -1,27 +1,25 @@
 'use strict';
-const categoriasArray = ['carnes','pescados','pastas','bebidas','postres','sopas','guarniciones'];
+const categoriasArray = ['carnes rojas','pescados y mariscos','pastas','sopas','guarniciones','desayunos y meriendas','bebidas' ];
 const categoriasDB = categoriasArray.map(categoria => {
   return {
     name: categoria,
-    createdAdd: new Date,
-    createdAdd: new Date,
+    createdAt: new Date,
+    updatedAt: new Date,
   }
 })
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
   async up(queryInterface, Sequelize) {
 
-    await queryInterface.bulkInsert('categories', [{
-      categorias
-     
-    }
-  ], {});
+    await queryInterface.bulkInsert('categories', 
+      categoriasDB,
+      {});
 
   },
 
   async down(queryInterface, Sequelize) {
 
-    await queryInterface.bulkDelete('users', null, {});
+    await queryInterface.bulkDelete('categories', null, {});
 
   }
 };

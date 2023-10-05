@@ -13,11 +13,11 @@
                     <div class="row g-0">
                         <div class="col-12 col-md-5">
                             <div class="d-flex flex-column gap-1">
-                                <img id="main-image" src="/img/products/<%= image %>" class="img-fluid  animate__animated animate__flipInX" alt="...">
+                                <img id="main-image" src="/img/products/<%= images.find(image=> image.main).file  %>" class="img-fluid  animate__animated animate__flipInX" alt="...">
                                 <div class="d-flex justify-content-between">
-                                    <% images.forEach((image,index) => { %>
-                                        <img src="/img/products/<%= image %>" width="32%" alt="" class="animate__animated animate__fadeIn animate__delay-<%= index + 1 %>s"
-                                        onclick="document.getElementById('main-image').setAttribute('src','/img/products/<%=image%>')">
+                                    <%images.filter(image =>!image.main).forEach((image,index) => { %>
+                                        <img src="/img/products/<%= image.file %>" width="32%" alt="" class="animate__animated animate__fadeIn animate__delay-<%= index + 1 %>s"
+                                        onclick="document.getElementById('main-image').setAttribute('src','/img/products/<%=image.file%>')">
                                     <% }) %>
                                   
                                 </div>
@@ -28,8 +28,13 @@
                             <div class="card-body">
                                 <h5 class="card-title"><%= title %></h5>
                                 <p class="card-text"><%= description %></p>
-                                <p class="card-text"><small class="text-body-secondary">$<%= price %></small>
+                                <div class="d-flex align-item-center gap-2"></div>
+                               <small> <p class="card-text text-body-secondary">$<%= price %></small>
+                                <p class="card-text text-body-secondary">$<%= price - (price*discount/100) %>
                                 </p>
+                                <div class="d-flex justify-content-end">
+                                    <button class="btn btn-secondary ">Comprar</button>
+                                </div>
                             </div>
                         </div>
                     </div>

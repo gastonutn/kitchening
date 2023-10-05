@@ -9,11 +9,11 @@ module.exports = [
       min: 4,
       max: 50,
     })
-    .withMessage("Debe tener entre 4 y 20 caracteres"),
-  check("category")
+    .withMessage("Debe tener entre 4 y 50 caracteres"),
+  check("categoryId")
     .notEmpty()
     .withMessage("Es requerida"),
-    check("section")
+    check("sectionId")
     .notEmpty()
     .withMessage("Es requerida"),
   check("price")
@@ -25,7 +25,7 @@ module.exports = [
     .withMessage("Debe ser positivo"),
   check("description").isLength({
     min: 20,
-    max: 500,
+    max: 1000,
   }).withMessage('Debe tener entre 20 y 500 caracteres'),
   body('image')
     .custom((value,{req}) => {
