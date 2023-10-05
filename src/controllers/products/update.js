@@ -67,8 +67,11 @@ module.exports = (req, res) => {
           }).then(result=> console.log(result))
           })
         }
-        return res.redirect("/admin")
+       
       }).catch(error=> console.log(error))
+      .finally(()=> {
+        return res.redirect("/admin")
+      })
      
     })
 
