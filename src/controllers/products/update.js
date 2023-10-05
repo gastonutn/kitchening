@@ -24,24 +24,23 @@ module.exports = (req, res) => {
         where:{
         id:req.params.id
         }
-      }).then(() => {
-        //cambiar imagen principal
+      }).then(()=> {
         if(req.files.image){
-          existsSync(`./public/img/products/${product.images.find(image => image.main).file}`) &&
-          unlinkSync(`./public/img/products/${product.images.find(image => image.main).file}`);
+          existsSync(`./public/img/products/${product.images.find(image=>image.main).file}`) &&
+          unlinkSync(`./public/img/products/${product.images.find(image=>image.main).file}`)
           DB.Images.destroy({
-            where : {
-              productId : req.params.id,
-              main : true
+            where:{
+              productId: req.params.id,
+              main: true
             }
-          })
-            .then(() => {
-              DB.Image.create({
-                file : req.files.image[0].filename,
-                main : true,
-                productId : req.params.id
-              })
+          }).then(()=> {
+            DB.Images.create({
+              file: req.files.image[0].filename,
+              main:true,
+              productId: req.params.id
+
             })
+          })
         }
         if(req.files.images){
           product.images.filter(image => !image.main).forEach((image)=>{
