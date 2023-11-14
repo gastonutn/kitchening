@@ -3,7 +3,7 @@ const DB= require('../../database/models')
 module.exports = (req,res) => {
 
     DB.Product.findByPk(req.params.id,{
-        include: ['Images']
+        include: ['images']
     })
     .then(product=> {
         return res.render('productDetail', {

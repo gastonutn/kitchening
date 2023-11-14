@@ -7,6 +7,7 @@ module.exports = {
         })
         .then(products => {
             return res.render('index', {
+                
                 products,
                 productsCarousel: []
     

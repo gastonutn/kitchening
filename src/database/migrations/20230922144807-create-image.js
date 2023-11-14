@@ -19,7 +19,7 @@ module.exports = {
         type: Sequelize.INTEGER,
           references: {
             model: {
-              tableName: 'products'
+              tableName: 'Products'
           }
         },
         onDelete: 'cascade'
@@ -33,7 +33,7 @@ module.exports = {
         type: Sequelize.DATE
       },
       deleteAt: {
-        type: Sequelize.DATE
+        type: Sequelize.DATE,
       }
     });
   },

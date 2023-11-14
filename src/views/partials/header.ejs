@@ -7,7 +7,7 @@
         <ul>
             <li><a href="/">home</a></li>
             <li><a href="/quienes">quienes</a></li>
-            <li><a href="/servicios">servicios</a></li>
+            <li><a href="/cart" type="button" class="btn btn-primary" id="btn-cart" data-bs-toggle="modal" data-bs-target="#cart">carrito</a></li>
             <% if (locals.userLogin) { %>
                 <% if (userLogin.role === 1) { %>
                     <li><a href="/admin">ADMIN</a></li>
@@ -20,4 +20,30 @@
             <% } %>
         </ul>
     </nav>
+    <!-- Button trigger modal -->
+
+  
+  <!-- Modal -->
+  <div class="modal fade" id="cart" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          ...
+          <div id="card-body">
+           
+
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Continuar comprando</button>
+          <button type="button" class="btn btn-danger" data-bs-dismiss="modal">vaciar carrito</button>
+          <button type="button" class="btn btn-sucess">Finalizar compra</button>
+        </div>
+      </div>
+    </div>
+  </div>
 </header>

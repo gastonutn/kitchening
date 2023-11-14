@@ -19,7 +19,7 @@ module.exports = (req,res) => {
         .then(product => {
             
             if(req.files.image){
-                DB.Images.create({
+                DB.images.create({
                 file: req.files.image[0].filename,
                 main: true,
                 productId : product.id
@@ -34,7 +34,7 @@ module.exports = (req,res) => {
                             productId: product.id
                         }
                     })
-                    DB.Images.bulkCreate(images,{
+                    DB.images.bulkCreate(images,{
                         validate : true
                     }).then(result => {
                         return res.redirect('/admin')

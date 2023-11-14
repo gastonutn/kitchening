@@ -16,5 +16,6 @@ module.exports = [
     .withMessage("El apellido es obligatorio")
     .isAlpha("es-ES")
     .withMessage("Solo letras"),
+    
   
 ];
